@@ -150,11 +150,11 @@ after_script:
       python-codacy-coverage -r coverage.xml;
       codeclimate-test-reporter;
     fi
+  - ls -lrt $WHEELDIR;
+  - echo $(find $WHEELDIR -newer $WHEELDIR/download_marker -name *.whl | tr [:space:] :)
 
 before_deploy:
   # Remove unused, unminified javascript from sphinx
-  - ls -lrt $WHEELDIR;
-  - echo $(find $WHEELDIR -newer $WHEELDIR/download_marker -name *.whl | tr [:space:] :)
   - if [[ $TASK == "docs" ]]; then
       rm -f docs/build/html/_static/jquery-*.js;
       rm -f docs/build/html/_static/underscore-*.js;
