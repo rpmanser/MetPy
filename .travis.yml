@@ -178,7 +178,7 @@ deploy:
       repo: Unidata/MetPy
       python: 3.7
       condition: '$TASK != "docs"'
-      branch: test-travis
+      tags: true
   - provider: script
     script: ci/deploy_docs.sh
     skip_cleanup: true
