@@ -151,3 +151,14 @@ def test_da_xy():
     }
 
     return ds.metpy.parse_cf('temperature')
+
+
+@pytest.fixture(params=["numpy", "masked", "dask"])
+def array_type(request):
+    if request.param == "numpy":
+        return numpy.array
+    elif request.param == "masked":
+        return numpy.ma.array
+    elif request.param == "dask":
+        dask_array = pytest.importorskip("dask.array", reason="dask.array is not available")
+        return dask_array.array
